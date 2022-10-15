@@ -1,6 +1,6 @@
 # DeliveryFood
 
-#The project used:
+# The project used:
 MVVM pattern;
 Compose;
 Hilt;
@@ -14,5 +14,5 @@ LiveData.
 
 ![Screenshot_1665840738](https://user-images.githubusercontent.com/95710591/195989164-b54507f5-68fc-42d1-a260-4403c39d585d.png)
 
-#The API used
+# The API used
 https://www.themealdb.com/api.php
