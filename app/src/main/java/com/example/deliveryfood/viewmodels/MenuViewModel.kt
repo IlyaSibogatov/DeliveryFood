@@ -1,9 +1,5 @@
 package com.example.deliveryfood.viewmodels
 
-import android.os.Build
-import android.service.controls.ControlsProviderService.TAG
-import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

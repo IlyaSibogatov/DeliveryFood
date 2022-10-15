@@ -3,7 +3,6 @@ package com.example.deliveryfood.models
 import androidx.lifecycle.LiveData
 import com.example.deliveryfood.models.api.ApiService
 import com.example.deliveryfood.models.api.model.Categories
-import com.example.deliveryfood.models.api.model.Category
 import com.example.deliveryfood.models.api.model.MealInfo
 import com.example.deliveryfood.models.api.model.MealList
 import com.example.deliveryfood.models.db.CategoryDAO

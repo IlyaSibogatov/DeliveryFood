@@ -16,5 +16,11 @@ fun NavGraph(navController: NavHostController, viewModel: MenuViewModel) {
         composable(route = BottomBarScreen.Menu.route) {
             MenuScreen(viewModel)
         }
+        composable(route = BottomBarScreen.Profile.route) {
+
+        }
+        composable(route = BottomBarScreen.Basket.route) {
+
+        }
     }
 }

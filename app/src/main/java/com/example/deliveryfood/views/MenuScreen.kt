@@ -6,13 +6,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -35,7 +35,11 @@ fun MenuScreen(viewModel: MenuViewModel) {
     val categoryList by viewModel.categories.observeAsState()
     val mealList by viewModel.mealAllInfo.observeAsState()
 
-    Column {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(White)
+    ) {
         CitiesDropDownMenu()
         categoryList?.let { listCategory ->
             mealList?.let { listMeal ->
@@ -58,11 +62,14 @@ fun CitiesDropDownMenu() {
         Text(
             text = currentValue.value,
             fontSize = 24.sp,
+            color = Black,
             fontWeight = FontWeight.Bold
         )
-        Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = null)
 
-        DropdownMenu(expanded = expanded.value, onDismissRequest = {
+        DropdownMenu(modifier = Modifier
+            .background(White),
+            expanded = expanded.value,
+            onDismissRequest = {
             expanded.value = false
         }) {
             citiesList.forEach { city ->
@@ -72,6 +79,7 @@ fun CitiesDropDownMenu() {
                 }) {
                     Text(
                         text = city,
+                        color = Color.Black,
                         fontSize = 18.sp
                     )
                 }
@@ -95,7 +103,8 @@ fun Banners() {
         items(bannerList) { item ->
             Card(
                 modifier = Modifier
-                    .padding(15.dp),
+                    .padding(15.dp)
+                    .background(White),
                 shape = MaterialTheme.shapes.small,
                 elevation = 4.dp
             ) {
@@ -114,21 +123,31 @@ fun Categories(categoryList: List<CategoryEntity>, viewModel: MenuViewModel) {
     val context = LocalContext.current
     LazyRow(
         modifier = Modifier
-            .background(color = White)
-            .padding(15.dp)
+            .background(White)
     ) {
         items(categoryList) { item ->
-            Text(
-                text = item.title,
-                fontSize = 16.sp,
+            Card(
                 modifier = Modifier
                     .padding(15.dp)
-                    .clickable {
-                        if (MyUtils.isInternetAvailable(context)) {
-                            viewModel.getMealByCategory(item.title)
+                    .background(White),
+                shape = MaterialTheme.shapes.small,
+                elevation = 4.dp
+            ) {
+                Text(
+                    text = item.title,
+                    color = Black,
+                    fontSize = 16.sp,
+                    modifier = Modifier
+                        .background(White)
+                        .padding(start = 8.dp, end =  8.dp, top = 10.dp, bottom = 10.dp)
+                        .clickable {
+                            if (MyUtils.isInternetAvailable(context)) {
+                                viewModel.getMealByCategory(item.title)
+                            }
                         }
-                    }
-            )
+                )
+            }
+
         }
     }
     Row(
@@ -164,8 +183,13 @@ fun SetScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(15.dp)
+                    .background(White),
+                shape = MaterialTheme.shapes.small,
+                elevation = 4.dp
             ) {
                 Row(
+                    modifier = Modifier
+                        .background(White),
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
                     GlideImage(
@@ -174,21 +198,26 @@ fun SetScreen(
                             contentScale = ContentScale.Crop,
                             alignment = Alignment.Center
                         ),
-                        modifier = Modifier.weight(1F)
+                        modifier = Modifier
+                            .weight(1F)
+                            .fillMaxHeight()
                     )
                     Column(
-                        modifier = Modifier.weight(1F)
+                        modifier = Modifier
+                            .weight(1F)
                     ) {
                         Text(
                             text = item.title,
                             modifier = Modifier
                                 .padding(15.dp),
+                            color = Black,
                             fontSize = 18.sp
                         )
                         Text(
                             text = item.description,
                             modifier = Modifier
                                 .padding(15.dp),
+                            color = Black,
                             fontSize = 14.sp,
                             maxLines = 10,
                             overflow = TextOverflow.Ellipsis

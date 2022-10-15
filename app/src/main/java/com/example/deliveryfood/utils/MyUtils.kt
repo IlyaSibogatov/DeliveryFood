@@ -1,6 +1,5 @@
 package com.example.deliveryfood.utils
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
