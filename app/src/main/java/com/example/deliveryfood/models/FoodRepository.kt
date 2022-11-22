@@ -12,7 +12,11 @@ import com.example.deliveryfood.models.db.MealEntity
 import retrofit2.Callback
 import javax.inject.Inject
 
-class FoodRepository @Inject constructor(private val apiService: ApiService, private val categoryDAO: CategoryDAO, private val mealDAO: MealDAO) {
+class FoodRepository @Inject constructor(
+    private val apiService: ApiService,
+    private val categoryDAO: CategoryDAO,
+    private val mealDAO: MealDAO
+    ) {
 
     fun getAllCategories(callback: Callback<Categories>) {
         apiService.getAllCategories().enqueue(callback)

@@ -5,8 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "meal_table")
-data class MealEntity
-    (
+data class MealEntity(
     @PrimaryKey
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "image") val image: String,

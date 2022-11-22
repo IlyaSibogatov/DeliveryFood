@@ -18,9 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MenuViewModel @Inject constructor(private val repository: FoodRepository) : ViewModel() {
 
-    //For save in DAO
-    private var categoriesList = mutableListOf<CategoryEntity>()
-
     //LiveData
     private var _categories = repository.getCategoryFromDao()
     val categories: LiveData<List<CategoryEntity>>

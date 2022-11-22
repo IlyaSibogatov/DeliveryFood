@@ -13,11 +13,13 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.deliveryfood.viewmodels.CartViewModel
 import com.example.deliveryfood.viewmodels.MenuViewModel
+import com.example.deliveryfood.viewmodels.ProfileViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun SetupBottomNav(viewModel: MenuViewModel) {
+fun SetupBottomNav(viewModel: MenuViewModel, profileViewModel: ProfileViewModel,cartViewModel: CartViewModel) {
     val navController = rememberNavController()
 
     Scaffold(
@@ -25,7 +27,11 @@ fun SetupBottomNav(viewModel: MenuViewModel) {
             BottomBar(navController = navController)
         }
     ) {
-        NavGraph(navController = navController, viewModel = viewModel)
+        NavGraph(
+            navController = navController,
+            menuViewModel = viewModel,
+            profileViewModel = profileViewModel,
+            cartViewModel = cartViewModel)
     }
 }
 
@@ -34,7 +40,7 @@ fun BottomBar(navController: NavHostController) {
     val screens = listOf(
         BottomBarScreen.Menu,
         BottomBarScreen.Profile,
-        BottomBarScreen.Basket
+        BottomBarScreen.Cart
     )
     val newBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = newBackStackEntry?.destination

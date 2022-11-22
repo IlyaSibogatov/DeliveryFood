@@ -19,9 +19,9 @@ sealed class BottomBarScreen(
         icon = R.drawable.ic_profile
     )
 
-    object Basket : BottomBarScreen(
-        route = "basket_screen",
-        title = "Basket",
+    object Cart : BottomBarScreen(
+        route = "cart_screen",
+        title = "Cart",
         icon = R.drawable.ic_shopping_basket
     )
 }

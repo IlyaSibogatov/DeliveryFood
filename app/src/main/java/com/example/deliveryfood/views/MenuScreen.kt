@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -55,7 +55,7 @@ fun CitiesDropDownMenu() {
     val expanded = remember { mutableStateOf(false) }
     val currentValue = remember { mutableStateOf(citiesList[0]) }
     Row(modifier = Modifier
-        .padding(10.dp)
+        .padding(top = 15.dp, start = 15.dp, end = 15.dp)
         .clickable {
             expanded.value = !expanded.value
         }) {
@@ -65,13 +65,12 @@ fun CitiesDropDownMenu() {
             color = Black,
             fontWeight = FontWeight.Bold
         )
-
         DropdownMenu(modifier = Modifier
             .background(White),
             expanded = expanded.value,
             onDismissRequest = {
-            expanded.value = false
-        }) {
+                expanded.value = false
+            }) {
             citiesList.forEach { city ->
                 DropdownMenuItem(onClick = {
                     currentValue.value = city
@@ -79,7 +78,7 @@ fun CitiesDropDownMenu() {
                 }) {
                     Text(
                         text = city,
-                        color = Color.Black,
+                        color = Black,
                         fontSize = 18.sp
                     )
                 }
@@ -103,7 +102,7 @@ fun Banners() {
         items(bannerList) { item ->
             Card(
                 modifier = Modifier
-                    .padding(15.dp)
+                    .padding(top = 15.dp, start = 15.dp, end = 15.dp)
                     .background(White),
                 shape = MaterialTheme.shapes.small,
                 elevation = 4.dp
@@ -139,7 +138,7 @@ fun Categories(categoryList: List<CategoryEntity>, viewModel: MenuViewModel) {
                     fontSize = 16.sp,
                     modifier = Modifier
                         .background(White)
-                        .padding(start = 8.dp, end =  8.dp, top = 10.dp, bottom = 10.dp)
+                        .padding(start = 8.dp, end = 8.dp, top = 10.dp, bottom = 10.dp)
                         .clickable {
                             if (MyUtils.isInternetAvailable(context)) {
                                 viewModel.getMealByCategory(item.title)
@@ -147,7 +146,6 @@ fun Categories(categoryList: List<CategoryEntity>, viewModel: MenuViewModel) {
                         }
                 )
             }
-
         }
     }
     Row(
@@ -155,7 +153,9 @@ fun Categories(categoryList: List<CategoryEntity>, viewModel: MenuViewModel) {
             .fillMaxWidth()
             .height(0.5.dp)
             .background(Color.Gray)
-    ) {}
+    ) {
+
+    }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -170,7 +170,7 @@ fun SetScreen(
             .fillMaxWidth()
     ) {
 
-        item() {
+        item {
             Banners()
         }
 
@@ -190,38 +190,49 @@ fun SetScreen(
                 Row(
                     modifier = Modifier
                         .background(White),
-                    horizontalArrangement = Arrangement.SpaceAround
+                    horizontalArrangement = Arrangement.SpaceAround,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     GlideImage(
                         imageModel = item.image,
                         imageOptions = ImageOptions(
                             contentScale = ContentScale.Crop,
-                            alignment = Alignment.Center
                         ),
                         modifier = Modifier
-                            .weight(1F)
-                            .fillMaxHeight()
+                            .weight(1F),
                     )
                     Column(
                         modifier = Modifier
-                            .weight(1F)
+                            .weight(1F),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
                             text = item.title,
                             modifier = Modifier
-                                .padding(15.dp),
+                                .padding(start = 15.dp, end = 15.dp, bottom = 15.dp),
                             color = Black,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                             fontSize = 18.sp
                         )
                         Text(
                             text = item.description,
                             modifier = Modifier
-                                .padding(15.dp),
+                                .padding(start = 15.dp, end = 15.dp, bottom = 15.dp),
                             color = Black,
                             fontSize = 14.sp,
                             maxLines = 10,
                             overflow = TextOverflow.Ellipsis
                         )
+                        OutlinedButton(
+                            onClick = { /*TODO*/ },
+                        ) {
+                            Text(
+                                text = "Add to cart",
+                                color = Black,
+                                fontSize = 14.sp,
+                            )
+                        }
                     }
                 }
             }

@@ -6,18 +6,22 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.example.deliveryfood.navigation.SetupBottomNav
 import com.example.deliveryfood.ui.theme.DeliveryFoodTheme
+import com.example.deliveryfood.viewmodels.CartViewModel
 import com.example.deliveryfood.viewmodels.MenuViewModel
+import com.example.deliveryfood.viewmodels.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val viewModel: MenuViewModel by viewModels()
+        val menuViewModel: MenuViewModel by viewModels()
+        val profileViewModel: ProfileViewModel by viewModels()
+        val cartViewModel: CartViewModel by viewModels()
         super.onCreate(savedInstanceState)
         setContent {
             DeliveryFoodTheme {
-                viewModel.getCategories()
-                SetupBottomNav(viewModel)
+                menuViewModel.getCategories()
+                SetupBottomNav(menuViewModel,profileViewModel, cartViewModel)
             }
         }
     }
