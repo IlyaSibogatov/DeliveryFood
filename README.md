@@ -10,9 +10,11 @@
 - Coroutines;
 - LiveData.
 
-![Screenshot_1665840730](https://user-images.githubusercontent.com/95710591/195989159-60c5eba1-f7e6-48b5-b44f-97794669a8e7.png)
+![menuscreen](https://user-images.githubusercontent.com/95710591/203618586-6d06cb71-316d-4527-9289-df09a6f49111.png)
 
-![Screenshot_1665840738](https://user-images.githubusercontent.com/95710591/195989164-b54507f5-68fc-42d1-a260-4403c39d585d.png)
+![profilescreen](https://user-images.githubusercontent.com/95710591/203618607-c9cf8336-e0f1-40b3-87b9-250b82fbc621.png)
+
+![cartscreen](https://user-images.githubusercontent.com/95710591/203618617-1ab27be5-7f37-48b7-9dc2-72d8651d3d4e.png)
 
 # The API used
 https://www.themealdb.com/api.php
