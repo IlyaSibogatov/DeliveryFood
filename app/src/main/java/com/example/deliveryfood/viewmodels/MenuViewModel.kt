@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryfood.models.api.model.*
 import com.example.deliveryfood.models.FoodRepository
+import com.example.deliveryfood.models.db.CartEntity
 import com.example.deliveryfood.models.db.CategoryEntity
 import com.example.deliveryfood.models.db.MealEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -93,6 +94,12 @@ class MenuViewModel @Inject constructor(private val repository: FoodRepository) 
 
                 }
             })
+        }
+    }
+
+    fun addClicked(title: String, count: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insetItemToCart(cartItem = CartEntity(title, count))
         }
     }
 }

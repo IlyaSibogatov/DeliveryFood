@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.example.deliveryfood.navigation.SetupBottomNav
+import com.example.deliveryfood.navigation.MainScreen
 import com.example.deliveryfood.ui.theme.DeliveryFoodTheme
 import com.example.deliveryfood.viewmodels.CartViewModel
 import com.example.deliveryfood.viewmodels.MenuViewModel
@@ -18,10 +18,11 @@ class MainActivity : ComponentActivity() {
         val profileViewModel: ProfileViewModel by viewModels()
         val cartViewModel: CartViewModel by viewModels()
         super.onCreate(savedInstanceState)
+
         setContent {
             DeliveryFoodTheme {
                 menuViewModel.getCategories()
-                SetupBottomNav(menuViewModel,profileViewModel, cartViewModel)
+                MainScreen(menuViewModel, profileViewModel, cartViewModel)
             }
         }
     }

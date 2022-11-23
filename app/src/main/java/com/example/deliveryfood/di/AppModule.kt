@@ -3,6 +3,7 @@ package com.example.deliveryfood.di
 import android.content.Context
 import androidx.room.Room
 import com.example.deliveryfood.models.api.ApiService
+import com.example.deliveryfood.models.db.CartDao
 import com.example.deliveryfood.models.db.CategoryDAO
 import com.example.deliveryfood.models.db.MealDAO
 import com.example.deliveryfood.models.db.MyDatabase
@@ -39,6 +40,11 @@ object AppModule {
     @Provides
     fun provideMealDao(myDatabase: MyDatabase): MealDAO{
         return myDatabase.mealDao()
+    }
+
+    @Provides
+    fun provideCartDao(myDatabase: MyDatabase): CartDao{
+        return myDatabase.cartDao()
     }
 
     @Provides

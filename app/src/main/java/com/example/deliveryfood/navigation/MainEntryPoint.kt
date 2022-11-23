@@ -1,10 +1,13 @@
 package com.example.deliveryfood.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavDestination
@@ -19,24 +22,31 @@ import com.example.deliveryfood.viewmodels.ProfileViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun SetupBottomNav(viewModel: MenuViewModel, profileViewModel: ProfileViewModel,cartViewModel: CartViewModel) {
+fun MainScreen(
+    viewModel: MenuViewModel,
+    profileViewModel: ProfileViewModel,
+    cartViewModel: CartViewModel
+) {
     val navController = rememberNavController()
 
     Scaffold(
         bottomBar = {
-            BottomBar(navController = navController)
+            BottomNavigation(navController = navController)
         }
-    ) {
-        NavGraph(
-            navController = navController,
-            menuViewModel = viewModel,
-            profileViewModel = profileViewModel,
-            cartViewModel = cartViewModel)
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            NavGraph(
+                navController = navController,
+                menuViewModel = viewModel,
+                profileViewModel = profileViewModel,
+                cartViewModel = cartViewModel
+            )
+        }
     }
 }
 
 @Composable
-fun BottomBar(navController: NavHostController) {
+fun BottomNavigation(navController: NavHostController) {
     val screens = listOf(
         BottomBarScreen.Menu,
         BottomBarScreen.Profile,

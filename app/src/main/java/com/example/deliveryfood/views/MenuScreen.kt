@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -24,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.example.deliveryfood.R
 import com.example.deliveryfood.models.db.CategoryEntity
 import com.example.deliveryfood.models.db.MealEntity
+import com.example.deliveryfood.utils.Constants
 import com.example.deliveryfood.utils.MyUtils
 import com.example.deliveryfood.viewmodels.MenuViewModel
 import com.skydoves.landscapist.ImageOptions
@@ -35,7 +35,7 @@ fun MenuScreen(viewModel: MenuViewModel) {
     val categoryList by viewModel.categories.observeAsState()
     val mealList by viewModel.mealAllInfo.observeAsState()
 
-    Column(
+    Box(
         Modifier
             .fillMaxSize()
             .background(White)
@@ -225,10 +225,10 @@ fun SetScreen(
                             overflow = TextOverflow.Ellipsis
                         )
                         OutlinedButton(
-                            onClick = { /*TODO*/ },
+                            onClick = { viewModel.addClicked(item.title, 1) },
                         ) {
                             Text(
-                                text = "Add to cart",
+                                text = Constants.ADD_TO_CART,
                                 color = Black,
                                 fontSize = 14.sp,
                             )
