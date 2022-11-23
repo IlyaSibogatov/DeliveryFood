@@ -1,10 +1,7 @@
 package com.example.deliveryfood.models.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface CartDao {
@@ -13,4 +10,11 @@ interface CartDao {
 
     @Query("SELECT * FROM cart_table ORDER BY title ASC")
     fun getCartItems(): LiveData<List<CartEntity>>
+
+    @Update
+    fun updateItemCart(cartItem: CartEntity)
+
+    @Query("DELETE FROM cart_table")
+    fun paid()
+
 }

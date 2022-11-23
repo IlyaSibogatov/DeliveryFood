@@ -22,6 +22,7 @@ object Constants {
     //Cart Screen
     const val YOUR_CART = "Your cart"
     const val PAY = "Pay"
+    const val PAY_CLICKED = "Order paid"
 
     //Other
     const val CONTENT_DESCRIPTION = "Content description"

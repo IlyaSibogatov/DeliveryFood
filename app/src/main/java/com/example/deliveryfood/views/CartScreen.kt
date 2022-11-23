@@ -1,5 +1,7 @@
 package com.example.deliveryfood.views
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,6 +15,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -40,6 +43,7 @@ fun CartScreen(viewModel: CartViewModel = hiltViewModel()) {
 
 @Composable
 fun AppBar(viewModel: CartViewModel) {
+    val context = LocalContext.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -61,6 +65,7 @@ fun AppBar(viewModel: CartViewModel) {
             modifier = Modifier.padding(15.dp),
             onClick = {
                 viewModel.payButtonClicked()
+                showToast(context, Constants.PAY_CLICKED)
             }) {
             Text(
                 text = Constants.PAY
@@ -95,7 +100,7 @@ fun CartList(viewModel: CartViewModel, list: List<CartEntity>) {
                     horizontalArrangement = Arrangement.End
                 ) {
                     IconButton(
-                        onClick = { viewModel.changeValue(false) }
+                        onClick = { viewModel.changeValue(false, item) }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_remove_24),
@@ -104,10 +109,10 @@ fun CartList(viewModel: CartViewModel, list: List<CartEntity>) {
                     }
                     Text(
                         modifier = Modifier.padding(15.dp),
-                        text = viewModel.value.value.toString()
+                        text = item.count.toString()
                     )
                     IconButton(
-                        onClick = { viewModel.changeValue(true) }
+                        onClick = { viewModel.changeValue(true, item) }
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_add_24),
@@ -118,4 +123,8 @@ fun CartList(viewModel: CartViewModel, list: List<CartEntity>) {
             }
         }
     }
+}
+
+fun showToast(context: Context, msg: String) {
+    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
 }

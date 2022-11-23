@@ -55,4 +55,12 @@ class FoodRepository @Inject constructor(
     fun getCartItems(): LiveData<List<CartEntity>> {
         return cartDao.getCartItems()
     }
+
+    fun updateItemCart(cartItem: CartEntity) {
+        cartDao.updateItemCart(cartItem)
+    }
+
+    fun cartPaid() {
+        cartDao.paid()
+    }
 }

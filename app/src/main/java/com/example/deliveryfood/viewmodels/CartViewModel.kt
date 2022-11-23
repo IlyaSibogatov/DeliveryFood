@@ -1,33 +1,46 @@
 package com.example.deliveryfood.viewmodels
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.deliveryfood.models.FoodRepository
 import com.example.deliveryfood.models.db.CartEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CartViewModel @Inject constructor(repository: FoodRepository) : ViewModel() {
+class CartViewModel @Inject constructor(private val repository: FoodRepository) : ViewModel() {
 
     //LiveData
     private var _listItems = repository.getCartItems()
     val listItems: LiveData<List<CartEntity>>
         get() = _listItems
 
-    private val _value = mutableStateOf(0)
-    val value: State<Int> get() = _value
-
-    fun changeValue(operator: Boolean) {
+    fun changeValue(operator: Boolean, cartItem: CartEntity) {
+        var count = cartItem.count
         when (operator) {
-            true -> _value.value++
-            false -> _value.value--
+            true -> {
+                count++
+                updateItem(cartItem.title, count)
+            }
+            false -> {
+                count--
+                updateItem(cartItem.title, count)
+            }
         }
     }
 
     fun payButtonClicked() {
-        /*TODO*/
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.cartPaid()
+        }
+    }
+
+    private fun updateItem(title: String, count: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateItemCart(cartItem = CartEntity(title, count))
+        }
     }
 }
