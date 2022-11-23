@@ -13,23 +13,20 @@ import com.example.deliveryfood.views.ProfileScreen
 
 @Composable
 fun NavGraph(
-    navController: NavHostController,
-    menuViewModel: MenuViewModel,
-    profileViewModel: ProfileViewModel,
-    cartViewModel: CartViewModel
+    navController: NavHostController
 ) {
     NavHost(
         navController = navController,
         startDestination = BottomBarScreen.Menu.route
     ) {
         composable(route = BottomBarScreen.Menu.route) {
-            MenuScreen(menuViewModel)
+            MenuScreen()
         }
         composable(route = BottomBarScreen.Profile.route) {
-            ProfileScreen(profileViewModel)
+            ProfileScreen()
         }
         composable(route = BottomBarScreen.Cart.route) {
-            CartScreen(cartViewModel)
+            CartScreen()
         }
     }
 }

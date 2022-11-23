@@ -22,11 +22,7 @@ import com.example.deliveryfood.viewmodels.ProfileViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MainScreen(
-    viewModel: MenuViewModel,
-    profileViewModel: ProfileViewModel,
-    cartViewModel: CartViewModel
-) {
+fun MainScreen() {
     val navController = rememberNavController()
 
     Scaffold(
@@ -36,10 +32,7 @@ fun MainScreen(
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             NavGraph(
-                navController = navController,
-                menuViewModel = viewModel,
-                profileViewModel = profileViewModel,
-                cartViewModel = cartViewModel
+                navController = navController
             )
         }
     }

@@ -9,11 +9,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.deliveryfood.utils.Constants
 import com.example.deliveryfood.viewmodels.ProfileViewModel
 
 @Composable
-fun ProfileScreen(viewModel: ProfileViewModel) {
+fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
 
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }

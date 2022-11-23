@@ -14,15 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val menuViewModel: MenuViewModel by viewModels()
-        val profileViewModel: ProfileViewModel by viewModels()
-        val cartViewModel: CartViewModel by viewModels()
         super.onCreate(savedInstanceState)
-
         setContent {
             DeliveryFoodTheme {
-                menuViewModel.getCategories()
-                MainScreen(menuViewModel, profileViewModel, cartViewModel)
+                MainScreen()
             }
         }
     }

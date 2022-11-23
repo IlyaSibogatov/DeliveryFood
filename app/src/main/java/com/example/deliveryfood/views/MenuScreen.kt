@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.deliveryfood.R
 import com.example.deliveryfood.models.db.CategoryEntity
 import com.example.deliveryfood.models.db.MealEntity
@@ -30,7 +31,7 @@ import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun MenuScreen(viewModel: MenuViewModel) {
+fun MenuScreen(viewModel: MenuViewModel = hiltViewModel()) {
 
     val categoryList by viewModel.categories.observeAsState()
     val mealList by viewModel.mealAllInfo.observeAsState()

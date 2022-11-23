@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.deliveryfood.R
 import com.example.deliveryfood.models.db.CartEntity
@@ -25,7 +26,7 @@ import com.example.deliveryfood.utils.Constants
 import com.example.deliveryfood.viewmodels.CartViewModel
 
 @Composable
-fun CartScreen(viewModel: CartViewModel = viewModel()) {
+fun CartScreen(viewModel: CartViewModel = hiltViewModel()) {
 
     val itemsList by viewModel.listItems.observeAsState()
 

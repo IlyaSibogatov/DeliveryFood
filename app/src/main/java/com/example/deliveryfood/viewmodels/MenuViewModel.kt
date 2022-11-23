@@ -28,7 +28,11 @@ class MenuViewModel @Inject constructor(private val repository: FoodRepository) 
     val mealAllInfo: LiveData<List<MealEntity>>
         get() = _mealAllInfo
 
-    fun getCategories() {
+    init {
+        getCategories()
+    }
+
+    private fun getCategories() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getAllCategories(object : Callback<Categories> {
                 override fun onResponse(
