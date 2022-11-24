@@ -43,4 +43,10 @@ class CartViewModel @Inject constructor(private val repository: FoodRepository) 
             repository.updateItemCart(cartItem = CartEntity(title, count))
         }
     }
+
+    fun deleteItemFromCart(item: CartEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteItem(item)
+        }
+    }
 }

@@ -1,7 +1,5 @@
 package com.example.deliveryfood.views
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,10 +20,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.deliveryfood.R
 import com.example.deliveryfood.models.db.CartEntity
 import com.example.deliveryfood.utils.Constants
+import com.example.deliveryfood.utils.MyUtils
 import com.example.deliveryfood.viewmodels.CartViewModel
 
 @Composable
@@ -65,7 +63,7 @@ fun AppBar(viewModel: CartViewModel) {
             modifier = Modifier.padding(15.dp),
             onClick = {
                 viewModel.payButtonClicked()
-                showToast(context, Constants.PAY_CLICKED)
+                MyUtils.showToast(context, Constants.PAY_CLICKED)
             }) {
             Text(
                 text = Constants.PAY
@@ -99,13 +97,24 @@ fun CartList(viewModel: CartViewModel, list: List<CartEntity>) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.End
                 ) {
-                    IconButton(
-                        onClick = { viewModel.changeValue(false, item) }
-                    ) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_remove_24),
-                            contentDescription = Constants.CONTENT_DESCRIPTION
-                        )
+                    when (item.count) {
+                        0 -> IconButton(
+                            onClick = { viewModel.deleteItemFromCart(item) }
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_delete_24),
+                                contentDescription = Constants.CONTENT_DESCRIPTION
+                            )
+                        }
+                        else ->
+                            IconButton(
+                                onClick = { viewModel.changeValue(false, item) }
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_remove_24),
+                                    contentDescription = Constants.CONTENT_DESCRIPTION
+                                )
+                            }
                     }
                     Text(
                         modifier = Modifier.padding(15.dp),
@@ -123,8 +132,4 @@ fun CartList(viewModel: CartViewModel, list: List<CartEntity>) {
             }
         }
     }
-}
-
-fun showToast(context: Context, msg: String) {
-    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
 }

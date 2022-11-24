@@ -63,4 +63,8 @@ class FoodRepository @Inject constructor(
     fun cartPaid() {
         cartDao.paid()
     }
+
+    fun deleteItem(item: CartEntity) {
+        cartDao.deleteItem(item)
+    }
 }

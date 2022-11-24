@@ -19,6 +19,10 @@ object Constants {
     const val SIGN_IN = "Sign in"
     const val CREATE_ACCOUNT = "Create an account"
 
+    //Registry Screen
+    const val REGISTRY = "Registry"
+    const val APPLY = "Apply"
+
     //Cart Screen
     const val YOUR_CART = "Your cart"
     const val PAY = "Pay"

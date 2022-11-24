@@ -3,6 +3,7 @@ package com.example.deliveryfood.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.widget.Toast
 
 object MyUtils {
     fun isInternetAvailable(context: Context): Boolean {
@@ -11,5 +12,9 @@ object MyUtils {
                 NetworkCapabilities.NET_CAPABILITY_INTERNET
             ) ?: false
         }
+    }
+
+    fun showToast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 }
